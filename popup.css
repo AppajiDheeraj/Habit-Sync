@@ -1,0 +1,382 @@
+/* Reset and base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  :root {
+    --primary-color: #9068FF;
+    --primary-color-dark: #7045e4;
+    --text-color: #333333;
+    --background-color: #F5F5FF;
+    --card-background: #FFFFFF;
+    --border-color: #E5E5E5;
+    --button-text: #FFFFFF;
+    --selected-icon: #9068FF;
+    --modal-overlay: rgba(0, 0, 0, 0.5);
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    min-width: 400px;
+    min-height: 500px;
+  }
+  
+  body.dark-mode {
+    --primary-color: #7045e4;
+    --text-color: #E5E5E5;
+    --background-color: #1A1A2E;
+    --card-background: #2D2D44;
+    --border-color: #3F3F5F;
+  }
+  
+  .hidden {
+    display: none !important;
+  }
+  
+  /* Main container */
+  .habit-tracker {
+    width: 100%;
+    min-height: 500px;
+    font-family: 'Segoe UI', 'Helvetica', 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    overflow: hidden;  /* Ensure content doesn't spill outside the border radius */
+  }
+  
+  /* Header styles */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--primary-color);
+    background-color: var(--card-background);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .logo {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  
+  .app-title {
+    font-size: 1.5rem;
+    margin: 0;
+    color: var(--text-color);
+  }
+  
+  .header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .mood-button {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .mood-button:hover {
+    transform: scale(1.1);
+  }
+  
+  .mood-button-active {
+    transform: scale(1.1);
+  }
+  
+  .theme-toggle {
+    padding: 0.5rem;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--text-color);
+  }
+  
+  .theme-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: currentColor;
+    stroke: currentColor;
+  }
+  
+  .plus-icon {
+    width: 1rem;
+    height: 1rem;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+  }
+  
+  /* Main content area */
+  .main-content {
+    padding: 1rem;
+    flex: 1;
+    overflow-y: auto;
+    background-color: var(--background-color);
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    scrollbar-width: none;  /* Hide scrollbar in Firefox */
+    -ms-overflow-style: none;  /* Hide scrollbar in IE/Edge */
+  }
+  
+  .main-content::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .habits-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .habits-title {
+    font-size: 1.25rem;
+    margin: 0;
+    color: var(--text-color);
+  }
+  
+  .add-habit-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--button-text);
+    cursor: pointer;
+  }
+  
+  /* Habits list */
+  .habits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .habit-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: var(--card-background);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .habit-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .habit-icon {
+    font-size: 1.5rem;
+  }
+  
+  .habit-name {
+    font-weight: bold;
+    color: var(--text-color);
+  }
+  
+  .habit-details {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.875rem;
+    color: var(--text-color);
+    opacity: 0.8;
+  }
+  
+  .habit-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .habit-complete-toggle, .habit-delete {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+  }
+  
+  /* Modal Styles */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--modal-overlay);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    border-radius: 16px;
+    padding: 1.5rem;
+    width: 320px;
+    max-height: 90vh;
+    overflow-y: auto;  /* Enable vertical scrolling */
+    overflow-x: hidden;  /* Hide horizontal scrollbar */
+    background-color: var(--card-background);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    scrollbar-width: none;  /* Hide scrollbar in Firefox */
+    -ms-overflow-style: none;  /* Hide scrollbar in IE/Edge */
+  }
+
+  .modal-content::-webkit-scrollbar {
+    display: none;
+  }
+
+  .modal-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: var(--text-color);
+  }
+  
+  .mood-grid {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .mood-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .mood-emoji {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .mood-label {
+    font-size: 0.875rem;
+    color: var(--text-color);
+  }
+  
+  .close-button, .form-submit, .form-cancel {
+    width: 100%;
+    padding: 0.75rem 0;
+    margin-top: 1.5rem;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--button-text);
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .form-cancel {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-label {
+    display: block;
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+    color: var(--text-color);
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-background);
+    color: var(--text-color);
+    box-sizing: border-box;
+  }
+  
+  .icon-grid {
+    display: flex;  /* Changed from grid to flex for horizontal scrolling */
+    flex-wrap: nowrap;  /* Prevent wrapping to new lines */
+    gap: 0.75rem;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    background-color: var(--background-color);
+    overflow-x: auto;  /* Enable horizontal scrolling */
+    overflow-y: hidden;  /* Hide vertical scrollbar */
+    scrollbar-width: none;  /* Hide scrollbar in Firefox */
+    -ms-overflow-style: none;  /* Hide scrollbar in IE/Edge */
+  }
+  
+  .icon-grid::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    min-width: 48px;
+    height: 48px;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-background);
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    flex-shrink: 0;  /* Prevent icon buttons from shrinking */
+  }
+  
+  .icon-button.selected {
+    background-color: var(--selected-icon);
+    color: white;
+    border-color: var(--selected-icon);
+  }
+
+  .icon-button:hover {
+    transform: translateY(-2px);
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }

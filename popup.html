@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HabeoPrax</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="habit-tracker">
+    <header class="header">
+      <div class="logo-container">
+        <div class="logo">HS</div>
+        <h1 class="app-title">HabitSync</h1>
+      </div>
+      <div class="header-buttons">
+        <button id="moodButton" class="mood-button" aria-label="Set mood">
+          <span id="currentMoodEmoji">😐</span>
+        </button>
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+          <svg class="theme-icon" viewBox="0 0 24 24">
+            <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+    
+    <main class="main-content">
+      <div class="habits-header">
+        <h2 class="habits-title">My Habits</h2>
+        <button id="addHabitBtn" class="add-habit-button">
+          <svg class="plus-icon" viewBox="0 0 24 24">
+            <path d="M12 4v16m8-8H4"/>
+          </svg>
+          <span>Add Habit</span>
+        </button>
+      </div>
+      
+      <ul id="habitsList" class="habits-list">
+        <!-- Habits will be added here by JavaScript -->
+      </ul>
+    </main>
+    
+    <!-- Mood Modal -->
+    <div id="moodModal" class="modal-overlay hidden">
+      <div class="modal-content" role="dialog" aria-labelledby="moodModalTitle">
+        <h3 id="moodModalTitle" class="modal-title">How are you feeling?</h3>
+        <div class="mood-grid">
+          <div class="mood-item" data-mood="0">
+            <span class="mood-emoji" role="img" aria-label="Angry">😡</span>
+            <span class="mood-label">Angry</span>
+          </div>
+          <div class="mood-item" data-mood="1">
+            <span class="mood-emoji" role="img" aria-label="Sad">😢</span>
+            <span class="mood-label">Sad</span>
+          </div>
+          <div class="mood-item" data-mood="2">
+            <span class="mood-emoji" role="img" aria-label="Neutral">😐</span>
+            <span class="mood-label">Neutral</span>
+          </div>
+          <div class="mood-item" data-mood="3">
+            <span class="mood-emoji" role="img" aria-label="Happy">😊</span>
+            <span class="mood-label">Happy</span>
+          </div>
+          <div class="mood-item" data-mood="4">
+            <span class="mood-emoji" role="img" aria-label="Loving">🥰</span>
+            <span class="mood-label">Loving</span>
+          </div>
+        </div>
+        <button id="closeMoodModal" class="close-button">Close</button>
+      </div>
+    </div>
+    
+    <!-- Add Habit Modal -->
+    <div id="addHabitModal" class="modal-overlay hidden">
+      <div class="modal-content" role="dialog" aria-labelledby="addHabitModalTitle">
+        <h3 id="addHabitModalTitle" class="modal-title">Add New Habit</h3>
+        <form id="addHabitForm">
+          <div class="form-group">
+            <label for="habitName" class="form-label">Habit Name</label>
+            <input type="text" id="habitName" class="form-input" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Icon</label>
+            <div class="icon-grid">
+              <button type="button" class="icon-button" data-icon="📝">📝</button>
+              <button type="button" class="icon-button" data-icon="🏃">🏃</button>
+              <button type="button" class="icon-button" data-icon="🧘">🧘</button>
+              <button type="button" class="icon-button" data-icon="💪">💪</button>
+              <button type="button" class="icon-button" data-icon="📚">📚</button>
+              <button type="button" class="icon-button" data-icon="🎨">🎨</button>
+              <button type="button" class="icon-button" data-icon="🎵">🎵</button>
+              <button type="button" class="icon-button" data-icon="🍎">🍎</button>
+              <button type="button" class="icon-button" data-icon="💧">💧</button>
+              <button type="button" class="icon-button" data-icon="😴">😴</button>
+            </div>
+            <input type="hidden" id="habitIcon" value="📝">
+          </div>
+          
+          <div class="form-group">
+            <label for="habitDays" class="form-label">Days</label>
+            <select id="habitDays" class="form-input">
+              <option>Daily</option>
+              <option>Mon-Fri</option>
+              <option>Weekends</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="habitTime" class="form-label">Time</label>
+            <input type="time" id="habitTime" class="form-input" value="09:00">
+          </div>
+          
+          <div class="form-actions">
+            <button type="submit" class="form-submit">Add</button>
+            <button type="button" id="cancelAddHabit" class="form-cancel">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
