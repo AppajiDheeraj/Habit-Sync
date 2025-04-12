@@ -2,6 +2,8 @@
 
 **Habit Sync** is a lightweight and visually appealing Chrome extension that helps you track your daily habits, manage your emotions through a moodboard, and toggle between light and dark themes. Designed with simplicity and productivity in mind!
 
+![Demo](habit-ezgif.com-optimize.gif)
+
 ---
 
 ## 🚀 Features
@@ -55,12 +57,6 @@ habit-sync-extension/ <br>
 - 📊 Visual charts for mood trends
 - ⏰ Reminders and notifications
 - 🧩 Sync across devices (optional via account)
-
----
-
-## 📸 Screenshots
-
-> _(Add your UI screenshots here if available for better visibility)_
 
 ---
 
